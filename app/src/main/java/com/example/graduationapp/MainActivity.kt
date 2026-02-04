@@ -2,6 +2,7 @@ package com.example.graduationapp
 
 import android.media.Image
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -22,25 +23,54 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import com.example.graduationapp.ui.theme.GraduationAppTheme
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             GraduationAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                val context = LocalContext.current
+                Scaffold(modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        TopAppBar(
+                            title = {
+                                Text(
+                                    text = "Graduation RSVP-RIT"
+                                )},
+                            colors = topAppBarColors(
+                                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                titleContentColor = MaterialTheme.colorScheme.primary
+                            )
+                        )
+                    },
+                    floatingActionButton = {
+                        FloatingActionButton(onClick = {
+                            Toast.makeText(context, "FAB Clicked!", Toast.LENGTH_SHORT).show()
+                        }) {
+                            Icon(Icons.Default.Add, contentDescription = "Add action")
+                        }
+                    }) { innerPadding ->
                     GradScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -66,7 +96,8 @@ fun GradScreen(modifier: Modifier = Modifier) {
         Image(
             painter = painterResource(R.drawable.grad_cap),
             contentDescription = "Graduation cap",
-            alpha = 0.7f
+            alpha = 0.7f,
+            modifier = Modifier.padding(bottom = 75.dp).size(250.dp)
         )
 
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -74,12 +105,13 @@ fun GradScreen(modifier: Modifier = Modifier) {
                 imageVector = Icons.Outlined.Info,
                 contentDescription = "Information",
                 tint = Color.Blue,
-                modifier = Modifier.padding(bottom = 6.dp, end = 2.dp).size(12.dp)
+                modifier = Modifier.padding(bottom = 21.dp, end = 2.dp).size(12.dp)
             )
             Text(
                 text = "Monday 10am, Golisano Hall 4000",
                 fontSize = 20.sp,
-                color = Color.Blue
+                color = Color.Blue,
+                modifier = Modifier.padding(bottom = 15.dp)
             )
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
