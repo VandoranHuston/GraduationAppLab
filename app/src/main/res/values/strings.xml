@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GraduationApp</string>
+    <string name="event_date">Monday 10am, Golisano Hall 4000</string>
+    <string name="grad_announcement">Graduation Announcement</string>
+    <string name="grad_cap">Graduation Cap</string>
+    <string name="information">Information</string>
+    <string name="attending">I\'ll be there!</string>
+    <string name="absent">Sorry I can\'t be there.</string>
+    <string name="title">Graduation RSVP-RIT</string>
 </resources>

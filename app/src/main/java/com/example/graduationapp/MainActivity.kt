@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import com.example.graduationapp.ui.theme.GraduationAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
                         TopAppBar(
                             title = {
                                 Text(
-                                    text = "Graduation RSVP-RIT"
+                                    text = stringResource(R.string.title)
                                 )},
                             colors = topAppBarColors(
                                 containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -83,10 +84,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GradScreen(modifier: Modifier = Modifier) {
     var isChecked by remember {mutableStateOf(true)}
-    val message = if (isChecked) "I'll be there!" else "Sorry I can't be there."
+    val message = if (isChecked) stringResource(R.string.attending) else stringResource(R.string.absent)
     Column (horizontalAlignment = Alignment.CenterHorizontally){
         Text(
-            text = "Graduation Announcement",
+            text = stringResource(R.string.grad_announcement),
             fontSize = 50.sp,
             lineHeight = 50.sp,
             color = Color.Red,
@@ -95,7 +96,7 @@ fun GradScreen(modifier: Modifier = Modifier) {
         )
         Image(
             painter = painterResource(R.drawable.grad_cap),
-            contentDescription = "Graduation cap",
+            contentDescription = stringResource(R.string.grad_cap),
             alpha = 0.7f,
             modifier = Modifier.padding(bottom = 75.dp).size(250.dp)
         )
@@ -103,12 +104,12 @@ fun GradScreen(modifier: Modifier = Modifier) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 imageVector = Icons.Outlined.Info,
-                contentDescription = "Information",
+                contentDescription = stringResource(R.string.information),
                 tint = Color.Blue,
                 modifier = Modifier.padding(bottom = 21.dp, end = 2.dp).size(12.dp)
             )
             Text(
-                text = "Monday 10am, Golisano Hall 4000",
+                text = stringResource(R.string.event_date),
                 fontSize = 20.sp,
                 color = Color.Blue,
                 modifier = Modifier.padding(bottom = 15.dp)
